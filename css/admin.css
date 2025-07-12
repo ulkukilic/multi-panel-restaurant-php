@@ -1,0 +1,128 @@
+* {                            /* Tum ogreler icin  */
+    margin: 0;                 /* Kenar boşluğunu sıfırlar */
+    padding: 0;                /* İç boşluğu sıfırlar */
+    font-family: Arial, Helvetica, sans-serif; /* Yazı tipini ayarlar */
+}
+
+
+.wrapper {
+  /*border: 1px solid black;  Siyah kenarlık */
+    padding: 1%;               /* İç boşluk */
+    width: 80%;                /* Genişlik %80 */
+    margin: 0 auto;            /* Ortalar */
+}
+
+.text-center {
+    text-align: center;       
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
+
+/* CSS for Menu */
+.menu {
+        border: 1px solid grey;  
+}
+.menu ul {
+    list-style-type: none;     /* Madde işareti yok */
+}
+
+.menu ul li {
+    display: inline;           /* Yan yana getirir */
+    padding: 1%;               /* İç boşluk */
+}
+
+.menu ul li a {
+   text-decoration: none;    /* Alt çizgi yok */
+   font-weight: bold;
+   color:thistle;
+}
+
+.main-content {
+    padding: 3% 0;              /* İç boşluk */
+}
+
+.col-4{
+    width: 20%;   
+    background-color: whitesmoke;  
+    margin: 1%;    
+    float: left;
+   
+}
+
+mark{
+    background-color: thistle;  /* Vurgu rengi */
+    color: black;                /* Yazı rengi */
+    padding: 0.2em;              /* İç boşluk */
+}
+
+
+
+/* CSS for Footer */
+.footer {
+    background-color: thistle;
+    color: white;      
+    padding: 30px 0;          
+    font-size: 1,2em ;
+}
+
+
+
+
+/* CSS for Mobile Size or Smaller Screen */
+
+@media only screen and (max-width:768px){
+    .logo{
+        width: 80%;
+        float: none;
+        margin: 1% auto;
+    }
+
+    .menu ul{
+        text-align: center;
+    }
+
+    .food-search input[type="search"]{
+        width: 90%;
+        padding: 2%;
+        margin-bottom: 3%;
+    }
+
+    .btn{
+        width: 91%;
+        padding: 2%;
+    }
+
+    .food-search{
+        padding: 10% 0;
+    }
+
+    .categories{
+        padding: 20% 0;
+    }
+    h2{
+        margin-bottom: 10%;
+    }
+    .box-3{
+        width: 100%;
+        margin: 4% auto;
+    }
+
+    .food-menu{
+        padding: 20% 0;
+    }
+
+    .food-menu-box{
+        width: 90%;
+        padding: 5%;
+        margin-bottom: 5%;
+    }
+    .social{
+        padding: 5% 0;
+    }
+    .order{
+        width: 100%;
+    }
+}
