@@ -60,50 +60,78 @@
 
   <div class="main-content">
     <div class="wrapper">
-      <!-- Başlık ve buton solda -->
+      
       <h1><mark>Manage Food</mark></h1>
       <div style="margin: 20px 0;">
-        <a href="add-admin.php" class="btn-primary"><mark>Add Food</mark></a>
+        <a href="add-food.php" class="btn-primary"><mark>Add Food</mark></a>
       </div>
 
-      <!-- Ortalanmış tablo -->
+      <?php
+        //Query to Get all Food
+        $sql   = "SELECT * FROM tbl_food";
+        //Execute the Query
+        $res   = mysqli_query($conn, $sql);
+        //Count Rows
+        $count = mysqli_num_rows($res);
+      ?>
+
       <table class="tbl-full">
         <thead>
           <tr>
             <th>#</th>
-            <th>Full Name</th>
-            <th>Username</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Category ID</th>
+            <th>Featured</th>
+            <th>Active</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
+          <?php
+            if($count > 0) {
+              $sn = 1;
+              while($row = mysqli_fetch_assoc($res)) {  // food verilerini cek
+                $id          = $row['id'];  // Food ID
+                $title       = $row['title']; 
+                $description = $row['description'];
+                $price       = $row['price'];
+                $image_name  = $row['image_name'];
+                $category_id = $row['category_id'];
+                $featured    = $row['featured'];
+                $active      = $row['active'];
+          ?>
           <tr>
-            <td>1</td>
-            <td>Elif</td>
-            <td>elgulds</td>
+            <td><?php echo $sn++; ?></td>   <!-- serial number -->
+            <td><?php echo $title; ?></td>
+            <td><?php echo $description; ?></td>
+            <td><?php echo number_format($price, 2); ?> ₺</td>  
             <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
+              <?php if($image_name != ""): ?>       <!-- Image kontrol -->
+                <!-- Resim varsa göster -->
+                <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" width="100px" alt="<?php echo $title; ?>">
+              <?php else: ?>
+                <span>No Image</span>
+              <?php endif; ?>
+            </td>
+            <td><?php echo $category_id; ?></td>       
+            <td><?php echo $featured; ?></td>
+            <td><?php echo $active; ?></td>
+            <td>
+              <a href="update-food.php?id=<?php echo $id; ?>" class="btn-success">Update Food</a>
+              <a href="delete-food.php?id=<?php echo $id; ?>" class="btn-danger">Delete Food</a>
             </td>
           </tr>
+          <?php
+              }
+            } else {
+          ?>
           <tr>
-            <td>2</td>
-            <td>Elif Ulku</td>
-            <td>u.kic</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
+            <td colspan="9">No Food Added.</td>
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Jakup</td>
-            <td>street</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
-          </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>

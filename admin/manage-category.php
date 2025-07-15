@@ -60,50 +60,52 @@
 
   <div class="main-content">
     <div class="wrapper">
-      <!-- Başlık ve buton solda -->
       <h1><mark>Manage Category</mark></h1>
       <div style="margin: 20px 0;">
-        <a href="add-admin.php" class="btn-primary"><mark>Add Category</mark></a>
+        <a href="add-category.php" class="btn-primary"><mark>Add Category</mark></a>
       </div>
 
-      <!-- Ortalanmış tablo -->
+      <?php
+        //Query to Get all Category
+        $sql   = "SELECT * FROM tbl_category";
+        //Execute the Query
+        $res   = mysqli_query($conn, $sql);
+        //Count Rows
+        $count = mysqli_num_rows($res);
+      ?>
+
       <table class="tbl-full">
         <thead>
           <tr>
             <th>#</th>
-            <th>Full Name</th>
-            <th>Username</th>
+            <th>Category Name</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
+          <?php
+            if($count > 0) {  // If categories are available
+              $sn = 1;  // Serial number for categories
+              while($row = mysqli_fetch_assoc($res)) {  // Fetch each category
+                $id    = $row['id'];  // Category ID
+                $title = $row['title']; // Category title
+          ?>
           <tr>
-            <td>1</td>
-            <td>Elif</td>
-            <td>elgulds</td>
+            <td><?php echo $sn++; ?></td>   <!-- Increment serial number -->
+            <td><?php echo $title; ?></td> <!-- Display category title -->
             <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
+              <a href="update-category.php?id=<?php echo $id; ?>" class="btn-success">Update category</a>
+              <a href="delete-category.php?id=<?php echo $id; ?>" class="btn-danger">Delete category</a>
             </td>
           </tr>
+          <?php
+              }
+            } else {
+          ?>
           <tr>
-            <td>2</td>
-            <td>Elif Ulku</td>
-            <td>u.kic</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
+            <td colspan="3">No Category Added.</td>     <!-- Message if no categories are found -->
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Jakup</td>
-            <td>street</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
-          </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>

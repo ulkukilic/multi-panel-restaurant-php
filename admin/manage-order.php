@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Orders </title>
+  <title>Manage Orders</title>
   <link rel="stylesheet" href="../css/admin.css">
   <style>
     /* Tablo genişlik ve hizalama */
@@ -60,13 +60,22 @@
 
   <div class="main-content">
     <div class="wrapper">
-      <!-- Başlık ve buton solda -->
+    
       <h1><mark>Manage Orders</mark></h1>
       <div style="margin: 20px 0;">
         <a href="add-order.php" class="btn-primary"><mark>Add Orders</mark></a>
       </div>
 
-      <!-- Ortalanmış tablo -->
+      <?php
+        //Query to Get all Orders
+        $sql   = "SELECT * FROM tbl_order";
+        //Execute the Query
+        $res   = mysqli_query($conn, $sql);
+       
+        $count = mysqli_num_rows($res);
+      ?>
+
+     
       <table class="tbl-full">
         <thead>
           <tr>
@@ -77,33 +86,31 @@
           </tr>
         </thead>
         <tbody>
+          <?php
+            if($count > 0) {  //orders varsa id ve user bilgilerini çek
+              $sn = 1;
+              while($row = mysqli_fetch_assoc($res)) {
+                $id            = $row['id'];
+                $food          = $row['food'];
+                $customer_name = $row['customer_name'];
+          ?>
           <tr>
-            <td>1</td>
-            <td>Hamburger</td>
-            <td>elgulds</td>
+            <td><?php echo $sn++; ?></td>  
+            <td><?php echo $food; ?></td>
+            <td><?php echo $customer_name; ?></td>
             <td>
-              <a href="update-order.php" class="btn-success">Update in Order</a>
-              <a href="delete-order.php" class="btn-danger">Delete in Order</a>
+              <a href="update-order.php?id=<?php echo $id; ?>" class="btn-success">Update in Order</a>
+              <a href="delete-order.php?id=<?php echo $id; ?>" class="btn-danger">Delete in Order</a>
             </td>
           </tr>
+          <?php
+              }
+            } else {
+          ?>
           <tr>
-            <td>2</td>
-            <td>Yaglama</td>
-            <td>u.kic</td>
-            <td>
-              <a href="update-order.php" class="btn-success">Update in Order</a>
-              <a href="delete-order.php" class="btn-danger">Delete in Order</a>
-            </td>
+            <td colspan="4">No Orders Found.</td>
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Pizza</td>
-            <td>street</td>
-            <td>
-              <a href="update-order.php" class="btn-success">Update in Order</a>
-              <a href="delete-order.php" class="btn-danger">Delete in Order</a>
-            </td>
-          </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>

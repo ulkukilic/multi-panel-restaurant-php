@@ -60,13 +60,22 @@
 
   <div class="main-content">
     <div class="wrapper">
-      <!-- Başlık ve buton solda -->
+    
       <h1><mark>Manage Admin</mark></h1>
       <div style="margin: 20px 0;">
         <a href="add-admin.php" class="btn-primary"><mark>Add Admin</mark></a>
       </div>
 
-      <!-- Ortalanmış tablo -->
+      <?php
+        //Query to Get all Admin
+        $sql = "SELECT * FROM tbl_admin";
+        //Execute the Query
+        $res = mysqli_query($conn, $sql);
+        //Count Rows
+        $count = mysqli_num_rows($res);
+      ?>
+
+     
       <table class="tbl-full">
         <thead>
           <tr>
@@ -77,33 +86,31 @@
           </tr>
         </thead>
         <tbody>
+          <?php
+            if($count > 0) {
+              $sn = 1;
+              while($row = mysqli_fetch_assoc($res)) {
+                $id        = $row['id'];
+                $full_name = $row['full_name'];
+                $username  = $row['username'];
+          ?>
           <tr>
-            <td>1</td>
-            <td>Elif</td>
-            <td>elgulds</td>
+            <td><?php echo $sn++; ?></td>
+            <td><?php echo $full_name; ?></td>
+            <td><?php echo $username; ?></td>
             <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
+              <a href="update-admin.php?id=<?php echo $id; ?>" class="btn-success">Update Admin</a>
+              <a href="delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Delete Admin</a>
             </td>
           </tr>
+          <?php
+              }
+            } else {
+          ?>
           <tr>
-            <td>2</td>
-            <td>Elif Ulku</td>
-            <td>u.kic</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
+            <td colspan="4">No Admin Added.</td>
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Jakup</td>
-            <td>street</td>
-            <td>
-              <a href="update-admin.php" class="btn-success">Update Admin</a>
-              <a href="delete-admin.php" class="btn-danger">Delete Admin</a>
-            </td>
-          </tr>
+          <?php } ?>
         </tbody>
       </table>
     </div>
