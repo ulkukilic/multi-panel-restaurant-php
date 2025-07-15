@@ -158,6 +158,10 @@ mark{
     color: white;      
     padding: 30px 0;          
     font-size: 1.2em;
+    text-align: center;
+    position: relative;  
+    bottom: 0; /* Footer'u sayfanın en altına sabitler */   
+    width: 100%;
 }
 
 

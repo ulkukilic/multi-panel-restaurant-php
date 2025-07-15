@@ -87,7 +87,7 @@
 
          // echo $sql; // for debugging purpose
 
-        // root kullanıcısı, şifresi boş (ya da kendi ayarına göre düzenle)
+        
         $conn = mysqli_connect('localhost', 'root', '','restaurant');
         if (!$conn) {
             die('DB bağlantı hatası: ' . mysqli_connect_error());
