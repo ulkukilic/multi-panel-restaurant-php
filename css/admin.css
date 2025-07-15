@@ -20,7 +20,99 @@
     float: none;
     clear: both;
 }
+.form {
+    width: 100%;               /* Form genişliği %100 */
+    padding: 2%;               /* İç boşluk */
+    margin: 1% auto;           /* Üst ve alt boşluk, ortalar */
+    background-color: whitesmoke; /* Arka plan rengi */
+    border-radius: 5px;        /* Köşe yuvarlama */
+}   
 
+ /* Tablo genişlik ve hizalama */
+    .tbl-full {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    /* Hücre iç boşluk ve ortalama */
+    .tbl-full th,
+    .tbl-full td {
+      text-align: center;
+      padding: 12px 20px;
+    }
+    /* Başlık ve buton solda */
+    .main-content h1,
+    .main-content .btn-primary {
+      text-align: left;
+      display: inline-block;
+    }
+
+.tbl-full th {
+  border-bottom: 2px solid #333;
+}
+
+.table tr th {
+    border-bottom: 2px solid #333;
+    padding: 1%;
+    text-align: left;
+}
+
+
+.table tr td {
+    padding: 1%;               /* İç boşluk */
+    border-bottom: 1px solid #ddd; /* Alt kenarlık */
+}
+
+.btn-primary {
+    background-color: thistle; /* Arka plan rengi */
+    color: white;              /* Yazı rengi */
+    padding: 1%;               /* İç boşluk */
+    text-decoration: none;     /* Alt çizgi yok */
+    font-weight: bold;         /* Kalın yazı */
+    border-radius: 5px;       /* Köşe yuvarlama */
+}
+
+.btn-primary:hover {
+    background-color: #d8bfd8; /* Hover rengi */
+    color: red;              /* Yazı rengi */
+}
+
+
+/* Update Admin: Yeşil */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 6px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    display: inline-block;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+.btn-success:hover {
+    background-color: #1e7e34;
+    color: white;
+}
+
+/* Delete Admin: Kırmızı */
+.btn-danger {
+    background-color: #f08080;
+    color: white;
+    padding: 6px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    display: inline-block;
+    margin-left: 4px;
+    transition: background 0.2s;
+}
+.btn-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
 /* CSS for Menu */
 .menu {
         border: 1px solid grey;  
@@ -65,7 +157,7 @@ mark{
     background-color: thistle;
     color: white;      
     padding: 30px 0;          
-    font-size: 1,2em ;
+    font-size: 1.2em;
 }
 
 
